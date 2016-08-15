@@ -3,7 +3,7 @@
 ## Архивы
 
 #### Запаковать в tar.gz:  
-tar -zcvf имя_архива архивируемая_папка   
+tar -zcvf имя-архива архивируемая-папка   
 например  
 tar -zcvf folder.tar.gz folder/  
 -c – значит, что создается новый архив;  
@@ -17,13 +17,13 @@ tar -xzvf имя_архива.tar.gz
 tar -xzvf archive.tar.gz
 
 #### Запаковать файлы в zip
-zip -r имя_архива архивируемая_папка  
+zip -r имя-архива архивируемая-папка  
 например  
 zip -r logs.zip logs/  
 r означает, что нужно искать файлы в папке рекурсивно, иначе в архиве бы оказалась одна пустая папка.
 
 #### Распаковать файлы из zip через SSH
-unzip имя_архива.zip  
+unzip имя-архива.zip  
 например  
 unzip archive.zip  
 
@@ -72,7 +72,7 @@ mysqldump -u db_user -p -h localhost -B db_name1 db_name2 db_name3 > databases.s
 mysqldump -u db_user -p -h localhost -A > all-databases.sql
 
 Сохранить только структуру БД  
-mysqldump --no-data -u db_user -p -h localhost db_name > schema.sql
+''mysqldump --no-data -u db_user -p -h localhost db_name > schema.sql''
 
 Создание дампа только одной или нескольких таблиц БД  
 mysqldump -u db_user -p -h localhost db_name tbl_name1 tbl_name2 tbl_name3 > dump.sql
