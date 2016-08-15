@@ -16,7 +16,6 @@ tar -xzvf имя_архива.tar.gz
 например  
 tar -xzvf archive.tar.gz
 
-
 #### Запаковать файлы в zip
 zip -r имя_архива архивируемая_папка  
 например  
@@ -44,8 +43,43 @@ scp -r root@server1.my:/home/dir/ root@server2.my:/home/dir/
 scp -P 9999 file.zip user@server.my:~/
 
 ###Дополнительные флаги
-- r - рекурсивное копирование (для директорий)
-- C - использовать сжатие при передачи
-- P - порт ssh (P большая! и -P указывает перед ssh хостом)
-- p - сохранить информацию о времени создания, модификации файла.
-Для передачи файлов часто бывает лучше использовать утилиту rsync.
+-r - рекурсивное копирование (для директорий)  
+-C - использовать сжатие при передачи  
+-P - порт ssh (P большая! и -P указывает перед ssh хостом)  
+-p - сохранить информацию о времени создания, модификации файла.  
+
+Для передачи файлов часто бывает лучше использовать утилиту rsync.  
+
+
+##Базы данных MySQL
+
+Импорт дампа базы данных  
+mysql -u db_user -p -h localhost db_name < dump.sql
+
+Импорт дампа базы данных, упакованных в gzip (*.sql.gz)  
+gunzip < dump.sql.gz | mysql -u db_user -p db_name
+
+Экспорт базы данных (создание дампа)  
+mysqldump -u db_user -p -h localhost db_name > dump.sql
+
+Создание архива GZip с дампом БД  
+mysqldump -u db_user -p -h localhost db_name | gzip > dump.tar.gz
+
+Создание дампа нескольких баз данных одновременно  
+mysqldump -u db_user -p -h localhost -B db_name1 db_name2 db_name3 > databases.sql
+
+Создание дампа всех баз данных  
+mysqldump -u db_user -p -h localhost -A > all-databases.sql
+
+Сохранить только структуру БД  
+mysqldump --no-data -u db_user -p -h localhost db_name > schema.sql
+
+Создание дампа только одной или нескольких таблиц БД  
+mysqldump -u db_user -p -h localhost db_name tbl_name1 tbl_name2 tbl_name3 > dump.sql
+
+Дополнительные атрибуты (уменьшают размер дампа и повышают скорость работы)  
+mysqldump -Q -c -e -u db_user -p -h localhost db_name > /path/to/file/dump.sql
+
+-Q - оборачивает имена обратными кавычками;  
+-c - делает полную вставку, включая имена колонок;  
+-e - делает расширенную вставку.  
