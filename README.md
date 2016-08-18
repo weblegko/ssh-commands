@@ -7,35 +7,28 @@
 ## <a name="arch"></a> Архивы
 
 #### Запаковать в tar.gz:  
-tar -zcvf имя-архива архивируемая-папка   
-например  
-tar -zcvf folder.tar.gz folder/  
+tar -zcvf fdump.tar.gz folder/  
 -c – значит, что создается новый архив;  
 -f – посредством этого флага задается имя создаваемого архива;  
 -z – архивация будет происходить посредством архиватора gzip;  
 -v – в консоль будет выводиться информация о процессе архивации.  
 
 #### Распаковать файлы из tar.gz через SSH
-tar -xzvf имя_архива.tar.gz  
-например  
-tar -xzvf archive.tar.gz
+tar -xzvf fdump.tar.gz
+-x - распаковать архив
 
 #### Запаковать файлы в zip
-zip -r имя-архива архивируемая-папка  
-например  
-zip -r logs.zip logs/  
-r означает, что нужно искать файлы в папке рекурсивно, иначе в архиве бы оказалась одна пустая папка.
+zip -r fdump.zip folder/  
+-r означает, что нужно искать файлы в папке рекурсивно, иначе в архиве бы оказалась одна пустая папка.
 
-#### Распаковать файлы из zip через SSH
-unzip имя-архива.zip  
-например  
-unzip archive.zip  
+#### Распаковать файлы из zip
+unzip fdump.zip  
 
 
 ## <a name="scp"></a> Переносим файлы через ssh
 
 Скопировать локальный файл на сервер:  
-scp file.gz root@server.my:/home/dir
+scp fdump.zip root@server.my:/home/dir
   
 Скопировать всё содержимое папки на сервере (рекурсивно) в локальную папку (с подробным выводом):  
 scp -r root@server.my:/home/dir/ /home/local/my/
@@ -44,9 +37,9 @@ scp -r root@server.my:/home/dir/ /home/local/my/
 scp -r root@server1.my:/home/dir/ root@server2.my:/home/dir/
 
 С указанием порта:  
-scp -P 9999 file.zip user@server.my:~/
+scp -P 9999 fdump.zip user@server.my:~/
 
-###Дополнительные флаги
+####Дополнительные флаги
 -r - рекурсивное копирование (для директорий)  
 -C - использовать сжатие при передачи  
 -P - порт ssh (P большая! и -P указывает перед ssh хостом)  
@@ -54,18 +47,11 @@ scp -P 9999 file.zip user@server.my:~/
 
 Для передачи файлов часто бывает лучше использовать утилиту rsync.  
 
-
 ## <a name="db"></a> Базы данных MySQL
 
-Импорт дампа базы данных  
-mysql -u db_user -p -h localhost db_name < dump.sql
+### Экспорт базы данных (создание дампа)  
 
-Импорт дампа базы данных, упакованных в gzip (*.sql.gz)  
-gunzip < dump.sql.gz | mysql -u db_user -p db_name
-
-Экспорт базы данных (создание дампа)  
-mysqldump -u db_user -p -h localhost db_name > dump.sql
-
+mysqldump -u db_user -p -h localhost db_name > dump.sql  
 Создание архива GZip с дампом БД  
 mysqldump -u db_user -p -h localhost db_name | gzip > dump.tar.gz
 
@@ -87,6 +73,15 @@ mysqldump -Q -c -e -u db_user -p -h localhost db_name > /path/to/file/dump.sql
 -Q - оборачивает имена обратными кавычками;  
 -c - делает полную вставку, включая имена колонок;  
 -e - делает расширенную вставку.  
+
+-----------------------------------
+
+Импорт дампа базы данных  
+mysql -u db_user -p -h localhost db_name < dump.sql
+
+Импорт дампа базы данных, упакованных в gzip (*.sql.gz)  
+gunzip < dump.sql.gz | mysql -u db_user -p db_name
+
 
 ## <a name="files"></a> Работа с файлами  
 
