@@ -87,20 +87,20 @@ mysql -u db_user -p -h localhost db_name < dump.sql
 gunzip < dump.sql.gz | mysql -u db_user -p db_name
 
 ------------------------------
-## <a name="files"></a> Работа с файлами  
+## <a name="files"></a> Работа с файлами
 
-####Перенос файлов:  
+####Перенос файлов:
 mv ~/domains/site.com/temp/* ~/domains/site.kz/  
 mv ~/domains/site.com/temp/.htaccess ~/domains/site.kz/  
 
-####Перенос всех скрытых файлов 
+####Перенос всех скрытых файлов
 mv /home/user/path/.[!.]* ~/path/folder  
 Важно указывать абсолютный путь до скрытых файлов, а в директорию куда переносим - необязательно.  
 
-####Копировать файлы:  
+####Копировать файлы:
 cp -R ~/domains/sites.com/temp/* ~/domains/site.kz/  
 
-####Скопировать все скрытые файлы:  
+####Скопировать все скрытые файлы:
 cp -p /home/user/path/.[!.]* ~/path/folder  
 
 Параметры:  
