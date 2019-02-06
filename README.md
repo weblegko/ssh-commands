@@ -211,3 +211,14 @@ find /opt/lampp/htdocs -type d -exec chmod 755 {} \;
 To change all the files to 644 (-rw-r--r--):
 
 find /opt/lampp/htdocs -type f -exec chmod 644 {} \;
+
+------------------------------------------------------------
+## Узнать размеры каталогов 
+du -hc dirname/
+### Один уровень вложенности выводить и отсортировать по убыванию
+du --max-depth=1 -hc  | sort -n -r
+
+## Узнать как использован диск
+df -h
+
+
