@@ -205,10 +205,11 @@ $ chmod -R 777 *
 Результатом выполнения вышеприведенной команды будет рекурсивный «обход» всех подкаталогов текущего каталога и назначение полного доступа для всех пользователей и групп.
 
 To change all the directories to 755 (drwxr-xr-x):  
-find /dir_name -type d -exec chmod 755 {} \;  
+find . -type d -exec chmod 0755 {} \;
 
 To change all the files to 644 (-rw-r--r--):  
-find /dir_name -type f -exec chmod 644 {} \;  
+find . -type f -exec chmod 0644 {} \;
+
 
 
 ## Изменить владельца и/или группу - chown
