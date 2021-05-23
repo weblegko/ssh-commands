@@ -206,10 +206,10 @@ $ chmod -R 777 *
 
 
 To change all the files to 644 (-rw-r--r--):  
-find ./ -type f -exec chmod 0644 {} \;
+`find ./ -type f -exec chmod 0644 {} \;
 
 To change all the directories to 755 (drwxr-xr-x):  
-find ./ -type d -exec chmod 0755 {} \;
+`find ./ -type d -exec chmod 0755 {} \;
 
 
 
